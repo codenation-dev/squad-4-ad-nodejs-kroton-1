@@ -1,1 +1,1 @@
-index.js
+const app = ('./app.js')
