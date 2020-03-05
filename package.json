@@ -1,0 +1,19 @@
+{
+  "name": "squad-4-ad-nodejs-kroton-1",
+  "version": "1.0.0",
+  "description": "Central de Erros. API para capturar os logs de erros de uma aplicação",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1.git"
+  },
+  "author": "Cristiano Franco,Marcio Botelho,Patrick Cruz,Pedro Lanatti,Raul Rory",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1/issues"
+  },
+  "homepage": "https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1#readme"
+}
