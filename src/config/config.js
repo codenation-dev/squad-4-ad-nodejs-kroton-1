@@ -1,11 +1,12 @@
 const { NODE_ENV = 'development' } = process.env
+require('dotenv').config()
 
 module.exports = {
   db: {
-    host     : 'localhost',
-    user     : 'root',
-    password : '1234',
-    database : `logsErro_${NODE_ENV}`,
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database : `node_logs_${NODE_ENV}`,
   },
   env: NODE_ENV
 }
