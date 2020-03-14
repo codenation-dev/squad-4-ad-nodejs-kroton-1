@@ -1,1 +1,1 @@
-# squad-4-ad-nodejs-kroton-1.
+# squad-4-ad-nodejs-kroton-1

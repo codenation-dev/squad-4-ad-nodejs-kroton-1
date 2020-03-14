@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-
-const db = require('../models/index.js')
+const db = require('../models')
 
 db.sequelize.sync()
   .then(() => process.exit(0))
+  

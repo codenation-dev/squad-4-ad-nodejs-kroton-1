@@ -8,17 +8,21 @@ module.exports = {
               primaryKey: true,
               type: DataTypes.INTEGER
             },
-            
-
-            //Colocar os atributos da tabela 'logs'
-
-
-            //Atributo createdAt é criado pelo sequelize
+            type: {
+              type: DataTypes.ENUM('ERROR', 'WARNING', 'BUG'),
+              allowNull: false
+            },
+            origin: {
+              type: DataTypes.STRING,
+              allowNull: false
+            },
+            statusCode: {
+              type: DataTypes.INTEGER,
+            },
             createdAt: {
               allowNull: false,
               type: DataTypes.DATE
             },
-            //Atributo updatedAt é criado pelo sequelize
             updatedAt: {
               allowNull: false,
               type: DataTypes.DATE
