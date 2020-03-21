@@ -2,23 +2,44 @@ const model = require('../models')['logs']
 
 let Log = {}
 
-Log.save = async (req, res, next) => {
-    const result = await req.body
+// Log.save = async (req, res, next) => {
+//     const result = await req.body
 
-    return result
-}
+//     return result
+// }
 
 Log.getAll = async (req, res, next) => {
-    const data = await model.findAll({})
-  
-    res.status(200).json({
-      total: data.length,
-      data
-    })
+  const type = req.query.type
+  const statusCode = req.query.statusCode
+  const origin = req.query.origin
+
+  if(type){
+    model.findAll({where: {type: type}})
+      .then(types => res.json(types))
   }
+
+  if(statusCode){
+    model.findAll({where: {statusCode: statusCode}})
+      .then(status => res.json(status))
+  }
+
+  if(origin){
+    model.findAll({where: {origin: origin}})
+      .then(origins => res.json(origins))
+  }
+
+  const data = await model.findAll({})
+   res.status(200).json({
+     total: data.length,
+     data
+    })
+}
   
   Log.getById = async (req, res, next) => {
-    const { LogId } = req.params
+    const type = req.query.type
+    const statusCode = req.query.statusCode
+  
+    const LogId = req.params.logsId
     const data = await model.findOne({
       where: { id: LogId }
     })
@@ -33,7 +54,7 @@ Log.getAll = async (req, res, next) => {
   }
   
   Log.update = async (req, res, next) => {
-    const { LogId } = req.params
+    const LogId = req.params.logsId
     const result = await model.update(req.body, {
       where: { id: LogId }
     })
@@ -42,7 +63,7 @@ Log.getAll = async (req, res, next) => {
   }
   
   Log.delete = async (req, res, next) => {
-    const { LogId } = req.params
+    const LogId = req.params.logsId
     const result = await model.destroy({
       where: { id: LogId }
     })

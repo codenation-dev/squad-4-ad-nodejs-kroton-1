@@ -7,7 +7,7 @@ router.get('/', verifyToken, controller.getAll)
 
 router.get('/:logsId', verifyToken, controller.getById)
 
-router.post('/', controller.save)  //ENPOINT QUE ENVIA OS ERROS PARA O BANCO, PRECISA COLOCAR UMA LOGICA PARA CHAMAR ELE APENAS EM ERRO
+router.post('/', controller.create)  //ENPOINT QUE ENVIA OS ERROS PARA O BANCO, PRECISA COLOCAR UMA LOGICA PARA CHAMAR ELE APENAS EM ERRO
 
 router.put('/:logsId', verifyToken, controller.update)
 
