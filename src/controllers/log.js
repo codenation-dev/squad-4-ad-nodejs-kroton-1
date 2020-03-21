@@ -2,12 +2,6 @@ const model = require('../models')['logs']
 
 let Log = {}
 
-// Log.save = async (req, res, next) => {
-//     const result = await req.body
-
-//     return result
-// }
-
 Log.getAll = async (req, res, next) => {
   const type = req.query.type
   const statusCode = req.query.statusCode
@@ -36,9 +30,7 @@ Log.getAll = async (req, res, next) => {
 }
   
   Log.getById = async (req, res, next) => {
-    const type = req.query.type
-    const statusCode = req.query.statusCode
-  
+
     const LogId = req.params.logsId
     const data = await model.findOne({
       where: { id: LogId }
@@ -50,7 +42,7 @@ Log.getAll = async (req, res, next) => {
   Log.create = async (req, res, next) => {
     const result = await model.create(req.body)
   
-    res.status(201).json({ result })
+    res.status(201).json({message: `Logs salvo na base de dados com sucesso: ${result}`})
   }
   
   Log.update = async (req, res, next) => {
