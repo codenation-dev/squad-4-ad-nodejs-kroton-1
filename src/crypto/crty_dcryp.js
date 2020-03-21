@@ -1,21 +1,29 @@
 
 const crypto = require("crypto");
-const cipher = crypto.createCipher();
+
+const testecript = {}
 
 const DADOS_CRIPTOGRAFAR = {
     algoritmo : "aes256",
-    segredo : "chaves",
-    tipo : "hex"
+    segredo : "chaveschaves1234chaveschaves1234",
+    tipo : "base64"
 };
 
-module.exports = {criptografar:(senha)=> {
-    const cipher = crypto.createCipher(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo);
+testecript.criptografar = (senha =>
+    {
+    const iv = crypto.randomBytes(16)
+    const cipher = crypto.createCipheriv(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo, iv);
     cipher.update(senha);
-    return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
-}}
+    return iv.toString('base64')+':'+cipher.final(DADOS_CRIPTOGRAFAR.tipo);
+})
 
-module.exports = {descriptografar : (senha) => {
-    const decipher = crypto.createDecipher(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo);
-    decipher.update(senha, DADOS_CRIPTOGRAFAR.tipo);
-    return decipher.final();
-}}
+testecript.descriptografar = (senha =>
+    {
+    const parts = senha.split(":")
+    const decipher = crypto.createDecipheriv(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo, new Buffer(parts[0], 'base64'));
+    decipher.update(parts[1], senha, DADOS_CRIPTOGRAFAR.tipo);
+    return decipher.final('utf8');
+})
+
+module.exports = testecript
+
