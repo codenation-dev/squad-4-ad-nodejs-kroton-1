@@ -4,8 +4,7 @@
     "version": "1.0.0",
     "title": "Squad 4 - Codenation NodeJS",
     "description": "Projeto Final"
-    }
-  },
+    },
   "host": "localhost:8080",
   "basePath": "/api/v1",
   "tags": [
@@ -36,7 +35,7 @@
             "in": "body",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
         ],
@@ -47,21 +46,7 @@
           "200": {
             "description": "New user is created",
             "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete user",
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
         }
@@ -91,7 +76,7 @@
             "in": "body",
             "description": "User with new values of properties",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
         ]
@@ -115,7 +100,7 @@
           "200": {
             "description": "User is found",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
         }
@@ -129,11 +114,30 @@
           "200": {
             "description": "User is deleted",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
-          }
+          },
+          "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          ]
         }
       },
+        "/users/{userId}": {
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
       "put": {
         "summary": "Update user with give ID",
         "tags": [
@@ -145,7 +149,7 @@
             "in": "body",
             "description": "User with new values of properties",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
         ],
@@ -153,20 +157,22 @@
           "200": {
             "description": "User is updated",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Users"
             }
           }
-        }
-      }
-    }
-  },
+        },
 "definitions": {
+    "Users": {
+      "required": [
+        "name"
+      ]
+    },
     "Logs": {
       "required": [
-        "_id",
-        "password"
-      ],
-"paths": {
+        "name",
+        "username",
+        "e-mail"
+        ],
   "/logs": {
     "get": {
       "tags": [
@@ -178,7 +184,7 @@
       ],
       "responses": {
         "200": {
-          "description": "New login",
+          "description": "Get all logins",
           "schema": {
             "$ref": "#/definitions/logs"
           }
@@ -192,12 +198,22 @@
     ],
     "responses": {
       "204": {
-        "description": "User is deleted",
+        "description": "Login is deleted",
         "schema": {
           "$ref": "#/definitions/logs"
         }
       }
-    },     
+    },
+    "parameters": [
+      {
+        "name": "user",
+        "in": "path",
+        "schema": {
+          "$ref": "#/definitions/logs"
+        }
+      }
+    ]
+  },    
      "post": {
       "summary": "Post log",
       "tags": [
@@ -206,7 +222,7 @@
       "parameters": [
         {
           "name": "user",
-          "in": "body",
+          "in": "path",
           "description": "User with new values of properties",
           "schema": {
             "$ref": "#/definitions/logs"
@@ -229,7 +245,7 @@
       "parameters": [
         {
           "name": "user",
-          "in": "body",
+          "in": "path",
           "description": "Log with new values of properties",
           "schema": {
             "$ref": "#/definitions/logs"
@@ -240,11 +256,11 @@
 "definitions": {
       "Auth": {
         "required": [
-          "_id",
+          "name",
           "password"
         ],
   "paths": {
-    "/auth": {
+    "/auth/login": {
       "post": {
       "summary": "Post auth",
       "tags": [
@@ -267,7 +283,19 @@
           "$ref": "#/definitions/auth"
         }
       }
-    },
-    
-
-
+    }
+  }
+}
+  }
+}
+}
+     }
+    }
+  }
+}
+}
+        }
+      }
+    }
+  }
+}
