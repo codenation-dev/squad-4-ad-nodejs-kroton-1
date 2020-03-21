@@ -36,7 +36,7 @@
             "in": "body",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
             }
           }
         ],
@@ -47,7 +47,21 @@
           "200": {
             "description": "New user is created",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         }
@@ -61,12 +75,27 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/controller/users.jss"
+              "$ref": "#/definitions/Users"
             }
           }
         }
-      }
-    },
+      },
+      "put": {
+        "summary": "Update user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ]
+      },
     "/users/{userId}": {
       "parameters": [
         {
@@ -86,7 +115,7 @@
           "200": {
             "description": "User is found",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
             }
           }
         }
@@ -100,7 +129,7 @@
           "200": {
             "description": "User is deleted",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
             }
           }
         }
@@ -116,7 +145,7 @@
             "in": "body",
             "description": "User with new values of properties",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
             }
           }
         ],
@@ -124,39 +153,121 @@
           "200": {
             "description": "User is updated",
             "schema": {
-              "$ref": "#/controller/users.js"
+              "$ref": "#/definitions/User"
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "User": {
+"definitions": {
+    "Logs": {
       "required": [
-        "email",
-        "_id"
+        "_id",
+        "password"
       ],
-      "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "email": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "lastName": {
-          "type": "string"
-        },
-        "firstName": {
-          "type": "string"
+"paths": {
+  "/logs": {
+    "get": {
+      "tags": [
+        "Logs"
+      ],
+      "description": "Get logs in the system",
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "New login",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
         }
       }
     },
-    "Users": {
-      "type": "array",
-      "$ref": "#/controller/user"
-    }
-  }
-}
+  "delete": {
+    "summary": "Delete logs",
+    "tags": [
+      "Logs"
+    ],
+    "responses": {
+      "204": {
+        "description": "User is deleted",
+        "schema": {
+          "$ref": "#/definitions/logs"
+        }
+      }
+    },     
+     "post": {
+      "summary": "Post log",
+      "tags": [
+        "Logs"
+      ],
+      "parameters": [
+        {
+          "name": "user",
+          "in": "body",
+          "description": "User with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
+        }
+      ],
+    "responses": {
+      "200": {
+        "description": "Log is posted",
+        "schema": {
+          "$ref": "#/definitions/logs"
+        }
+      }
+    },
+    "put": {
+      "summary": "Update log",
+      "tags": [
+        "Logs"
+      ],
+      "parameters": [
+        {
+          "name": "user",
+          "in": "body",
+          "description": "Log with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
+        }
+      ]
+    },
+"definitions": {
+      "Auth": {
+        "required": [
+          "_id",
+          "password"
+        ],
+  "paths": {
+    "/auth": {
+      "post": {
+      "summary": "Post auth",
+      "tags": [
+        "Logs"
+      ],
+      "parameters": [
+        {
+          "name": "user",
+          "in": "body",
+          "description": "Auth with new propeties",
+          "schema": {
+            "$ref": "#/definitions/auth"
+          }
+        }
+      ],
+    "responses": {
+      "200": {
+        "description": "Auth is posted",
+        "schema": {
+          "$ref": "#/definitions/auth"
+        }
+      }
+    },
+    
+
+
