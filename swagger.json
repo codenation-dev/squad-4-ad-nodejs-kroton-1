@@ -24,6 +24,20 @@
   ],
   "paths": {
     "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        }
+      },     
       "post": {
         "tags": [
           "users"
@@ -45,20 +59,6 @@
         "responses": {
           "200": {
             "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/users"
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "users"
-        ],
-        "summary": "Get all users in system",
-        "responses": {
-          "200": {
-            "description": "OK",
             "schema": {
               "$ref": "#/definitions/users"
             }
@@ -122,7 +122,7 @@
                   ],
                   "responses": {
                     "200": {
-                      "description": "User is deleted",
+                      "description": "User with the given ID is deleted",
                       "schema": {
                         "$ref": "#/definitions/users"
                       }
@@ -156,30 +156,7 @@
             }
           }
         }
-      },
-    "delete": {
-      "summary": "Delete logs",
-      "tags": [
-        "logs"
-      ],
-      "responses": {
-        "204": {
-          "description": "Login is deleted",
-          "schema": {
-            "$ref": "#/definitions/logs"
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "user",
-          "in": "path",
-          "schema": {
-            "$ref": "#/definitions/logs"
-          }
-        }
-      ]
-    },    
+      },  
        "post": {
         "summary": "Post log",
         "tags": [
@@ -227,7 +204,30 @@
             }
        }
     }
-    }
+    },
+    "delete": {
+      "summary": "Delete logs",
+      "tags": [
+        "logs"
+      ],
+      "responses": {
+        "204": {
+          "description": "Login is deleted",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "user",
+          "in": "path",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
+        }
+      ]
+    }  
   }, 
     "/auth/login": {
       "post": {
@@ -257,32 +257,69 @@
 },
 "definitions": {
   "users/{userId}": {
-    "required": [
-    "name",
-    "password"
-  ]
-},
+      "properties": {
+        "username": {
+          "type": "string"
+        }
+    }
+  },
   "users": {
-    "required": [
-      "name"
-    ]
+      "properties": {
+        "name": {
+          "type": "string",
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        }
+      }
   },
   "logs": {
-    "required": [
-      "name",
-      "username",
-      "e-mail"
-      ], 
+    "properties":{
+      "descripition": {
+        "type": "DataTypes.STRING",
+        "allowNull": false
+    },
+    "type": {
+        "type": "DataTypes.ENUM('ERROR', 'WARNING', 'BUG')",
+        "allowNull": false
+    },
+    "origin": {
+        "type": "DataTypes.STRING",
+        "allowNull": false
+    },
+    "statusCode": {
+        "type": "DataTypes.INTEGER",
+    } 
+    }
+    },
     "auth": {
-      "required": [
-        "name",
-        "password"
-      ]
+      "properties": {
+        "name": {
+          "type": "string",
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        }
+      }
     }
   }
 }
 }
-}
+
 
 
 
