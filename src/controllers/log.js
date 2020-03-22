@@ -12,21 +12,23 @@ Log.getAll = async (req, res, next) => {
       .then(types => res.json(types))
   }
 
-  if(statusCode){
+  else if(statusCode){
     model.findAll({where: {statusCode: statusCode}})
       .then(status => res.json(status))
   }
 
-  if(origin){
+  else if(origin){
     model.findAll({where: {origin: origin}})
       .then(origins => res.json(origins))
   }
-
-  const data = await model.findAll({})
-   res.status(200).json({
+  else{
+    const data = await model.findAll({})
+    res.status(200).json({
      total: data.length,
      data
     })
+  }
+  
 }
   
   Log.getById = async (req, res, next) => {
