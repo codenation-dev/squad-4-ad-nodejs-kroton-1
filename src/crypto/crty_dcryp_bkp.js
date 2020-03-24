@@ -13,16 +13,16 @@ testecript.criptografar = (senha =>
     {
     const iv = crypto.randomBytes(16)
     const cipher = crypto.createCipheriv(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo, iv);
-    cipher.update(senha);
-    return iv.toString('base64')+':'+cipher.final(DADOS_CRIPTOGRAFAR.tipo);
+    const crypted = cipher.update(senha, 'utf8', 'base64') + cipher.final('base64');
+    return iv.toString('base64')+':'+crypted;
 })
 
 testecript.descriptografar = (senha =>
     {
     const parts = senha.split(":")
-    const decipher = crypto.createDecipheriv(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo, new Buffer(parts[0], 'base64'));
-    decipher.update(parts[1], senha, DADOS_CRIPTOGRAFAR.tipo);
-    return decipher.final('utf8');
+    const decipher = crypto.createDecipheriv(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo, new Buffer.from(parts[0], 'base64'));
+    const plain = decipher.update(parts[1], 'base64', 'utf8')+decipher.final('utf8');
+    return plain;
 })
 
 module.exports = testecript

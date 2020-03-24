@@ -8,5 +8,10 @@ module.exports = {
     password : process.env.DB_PASSWORD,
     database : `node_logs_${NODE_ENV}`,
   },
-  env: NODE_ENV
+  env: NODE_ENV,
+  dados_criptografar : {
+    algoritmo : process.env.CRYPT_ALGORITHM,
+    segredo : process.env.SECRET_CRYPT_KEY,
+    tipo : process.env.CRYPT_TYPE
+  }
 }
