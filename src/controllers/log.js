@@ -2,12 +2,6 @@ const model = require('../models').logs
 
 const Log = {}
 
-Log.save = async (req, res, next) => {
-  const result = await req.body
-
-  return result
-}
-
 Log.getAll = async (req, res, next) => {
   const data = await model.findAll({})
 
