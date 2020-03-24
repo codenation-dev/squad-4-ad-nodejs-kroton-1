@@ -1,23 +1,20 @@
 const crypto = require("crypto");
+const config = require("../config/config");
 
 const criptRes ={ }
 
-const DADOS_CRIPTOGRAFAR = {
-    algoritmo : "aes256",
-    segredo : "chaves",
-    tipo : "hex"
-};
-
 criptRes.criptografar = (senha)=> {
-    const cipher = crypto.createCipher(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo);
-    cipher.update(senha);
-    return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
+    const iv = crypto.randomBytes(16)
+    const cipher = crypto.createCipheriv(config.dados_criptografar.algoritmo, config.dados_criptografar.segredo, iv);
+    const crypted = cipher.update(senha, 'utf8', 'base64') + cipher.final('base64');
+    return iv.toString('base64')+':'+crypted;
 }
 
 criptRes.descriptografar = (senha) => {
-    const decipher = crypto.createDecipher(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo);
-    decipher.update(senha, DADOS_CRIPTOGRAFAR.tipo);
-    return decipher.final();
+    const parts = senha.split(":")
+    const decipher = crypto.createDecipheriv(config.dados_criptografar.algoritmo, config.dados_criptografar.segredo, new Buffer.from(parts[0], 'base64'));
+    const plain = decipher.update(parts[1], 'base64', 'utf8')+decipher.final('utf8');
+    return plain;
 }
 
 module.exports = criptRes
