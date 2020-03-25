@@ -22,10 +22,6 @@ Users.getById = async (req, res, next) => {
 
 Users.create = async (req, res, next) => {
   const result = await model.create(req.body)
-<<<<<<< HEAD
-
-=======
->>>>>>> 1dc54c0b21df53895bd31a0da0acf91d8cb0759b
   res.status(201).json({ result })
 }
 
@@ -47,8 +43,4 @@ Users.delete = async (req, res, next) => {
   res.status(204).json({ result })
 }
 
-<<<<<<< HEAD
 module.exports = Users
-=======
-module.exports = Users
->>>>>>> 1dc54c0b21df53895bd31a0da0acf91d8cb0759b
