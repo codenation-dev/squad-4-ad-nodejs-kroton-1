@@ -4,7 +4,6 @@ const app = express()
 const routes = require('./routes')
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger.json')
- 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
