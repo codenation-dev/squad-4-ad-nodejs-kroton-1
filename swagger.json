@@ -266,7 +266,7 @@
   "users": {
       "properties": {
         "name": {
-          "type": "string",
+          "type": "string"
         },
         "username": {
           "type": "string"
@@ -295,14 +295,14 @@
         "allowNull": false
     },
     "statusCode": {
-        "type": "DataTypes.INTEGER",
+        "type": "DataTypes.INTEGER"
     } 
     }
     },
     "auth": {
       "properties": {
         "name": {
-          "type": "string",
+          "type": "string"
         },
         "username": {
           "type": "string"

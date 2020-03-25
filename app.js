@@ -9,6 +9,6 @@ const swaggerDocument = require('./swagger.json');
 app.use(bodyParser.json())
 
 app.use('/v1', routes)
-app.use('/api-docs, swaggerUi.serve, swaggerUi.setup(swaggerDocument, options), )
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
 
 module.exports = { app }
