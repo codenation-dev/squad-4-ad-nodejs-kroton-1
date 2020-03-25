@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize')
 const path = require('path')
 const config = require('../config/config')
+const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(
   config.db.database,

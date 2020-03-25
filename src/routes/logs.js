@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/log')
 const verifyToken = require('../middleware/auth')
+const authorizationUser = require('../middleware/auth_admin')
 
 router.get('/', verifyToken, controller.getAll)
 
@@ -9,8 +10,8 @@ router.get('/:logsId', verifyToken, controller.getById)
 
 router.post('/', controller.create) // ENPOINT QUE ENVIA OS ERROS PARA O BANCO, PRECISA COLOCAR UMA LOGICA PARA CHAMAR ELE APENAS EM ERRO
 
-router.put('/:logsId', verifyToken, controller.update)
+router.put('/:logsId', authorizationUser, controller.update)
 
-router.delete('/:logsId', verifyToken, controller.delete)
+router.delete('/:logsId', authorizationUser, controller.delete)
 
 module.exports = router
