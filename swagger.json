@@ -4,15 +4,13 @@
     "version": "1.0.0",
     "title": "Squad 4 - Codenation NodeJS",
     "description": "Projeto Final"
-    },
+  },
   "host": "localhost:8080",
   "basePath": "/api/v1",
-  "tags": [
-    {
-      "name": "users",
-      "description": "API for users in the system"
-    }
-  ],
+  "tags": [{
+    "name": "users",
+    "description": "API for users in the system"
+  }],
   "schemes": [
     "http"
   ],
@@ -37,22 +35,20 @@
             }
           }
         }
-      },     
+      },
       "post": {
         "tags": [
           "users"
         ],
         "description": "Create new user in system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "$ref": "#/definitions/users"
-            }
+        "parameters": [{
+          "name": "user",
+          "in": "body",
+          "description": "User that we want to create",
+          "schema": {
+            "$ref": "#/definitions/users"
           }
-        ],
+        }],
         "produces": [
           "application/json"
         ],
@@ -70,75 +66,69 @@
         "tags": [
           "users"
         ],
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User with new values of properties",
+        "parameters": [{
+          "name": "user",
+          "in": "body",
+          "description": "User with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/users"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [{
+        "name": "userId",
+        "in": "path",
+        "required": true,
+        "description": "ID of user that we want to find",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
             "schema": {
               "$ref": "#/definitions/users"
             }
           }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "users"
         ],
-          "responses": {
-            "200": {
-              "description": "User is updated",
-              "schema": {
-                "$ref": "#/definitions/users"
-              }
-  
+        "responses": {
+          "200": {
+            "description": "User with the given ID is deleted",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          },
+          "parameters": [{
+            "name": "user",
+            "in": "path",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }]
+        }
       }
-      }
-    }
-  },
-    "/users/{userId}": {
-                "parameters": [
-                  {
-                    "name": "userId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of user that we want to find",
-                    "type": "string"
-                  }
-                ],
-                "get": {
-                  "tags": [
-                    "users"
-                  ],
-                  "summary": "Get user with given ID",
-                  "responses": {
-                    "200": {
-                      "description": "User is found",
-                      "schema": {
-                        "$ref": "#/definitions/users"
-                      }
-                    }
-                  }
-                },
-                "delete": {
-                  "summary": "Delete user with given ID",
-                  "tags": [
-                    "users"
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "User with the given ID is deleted",
-                      "schema": {
-                        "$ref": "#/definitions/users"
-                      }
-                    },
-                    "parameters": [
-                      {
-                        "name": "user",
-                        "in": "path",
-                        "schema": {
-                          "$ref": "#/definitions/users"
-                        }
-                      }
-                    ]
-                  }
-                }
-              },
+    },
     "/logs": {
       "get": {
         "tags": [
@@ -156,114 +146,100 @@
             }
           }
         }
-      },  
-       "post": {
+      },
+      "post": {
         "summary": "Post log",
         "tags": [
           "logs"
         ],
-        "parameters": [
-          {
-            "name": "user",
-            "in": "path",
-            "description": "User with new values of properties",
+        "parameters": [{
+          "name": "user",
+          "in": "path",
+          "description": "User with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/logs"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Log is posted",
             "schema": {
               "$ref": "#/definitions/logs"
             }
           }
-        ],
-      "responses": {
-        "200": {
-          "description": "Log is posted",
-          "schema": {
-            "$ref": "#/definitions/logs"
-          }
         }
-      }
-    },
+      },
       "put": {
         "summary": "Update log",
         "tags": [
           "logs"
         ],
-        "parameters": [
-          {
-            "name": "user",
-            "in": "path",
-            "description": "Log with new values of properties",
-            "schema": {
-              "$ref": "#/definitions/logs"
-            }
+        "parameters": [{
+          "name": "user",
+          "in": "path",
+          "description": "Log with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/logs"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "User is updated",
             "schema": {
               "$ref": "#/definitions/users"
             }
-       }
-    }
-    },
-    "delete": {
-      "summary": "Delete logs",
-      "tags": [
-        "logs"
-      ],
-      "responses": {
-        "204": {
-          "description": "Login is deleted",
-          "schema": {
-            "$ref": "#/definitions/logs"
           }
         }
       },
-      "parameters": [
-        {
+      "delete": {
+        "summary": "Delete logs",
+        "tags": [
+          "logs"
+        ],
+        "responses": {
+          "204": {
+            "description": "Login is deleted",
+            "schema": {
+              "$ref": "#/definitions/logs"
+            }
+          }
+        },
+        "parameters": [{
           "name": "user",
           "in": "path",
           "schema": {
             "$ref": "#/definitions/logs"
           }
-        }
-      ]
-    }  
-  }, 
+        }]
+      }
+    },
     "/auth/login": {
       "post": {
-      "summary": "Post auth",
-      "tags": [
-        "logs"
-      ],
-      "parameters": [
-        {
+        "summary": "Post auth",
+        "tags": [
+          "logs"
+        ],
+        "parameters": [{
           "name": "user",
           "in": "body",
           "description": "Auth with new propeties",
           "schema": {
             "$ref": "#/definitions/auth"
           }
-        }
-      ],
-    "responses": {
-      "200": {
-        "description": "Auth is posted",
-        "schema": {
-          "$ref": "#/definitions/auth"
+        }],
+        "responses": {
+          "200": {
+            "description": "Auth is posted",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          }
         }
       }
     }
-  }
-},
-"definitions": {
-  "users/{userId}": {
-      "properties": {
-        "username": {
-          "type": "string"
-        }
-    }
   },
-  "users": {
+  "definitions": {
+    "users": {
       "properties": {
         "name": {
           "type": "string"
@@ -274,30 +250,27 @@
         "email": {
           "type": "string",
           "uniqueItems": true
-        },
-        "password": {
-          "type": "string"
         }
       }
-  },
-  "logs": {
-    "properties":{
-      "descripition": {
-        "type": "DataTypes.STRING",
-        "allowNull": false
     },
-    "type": {
-        "type": "DataTypes.ENUM('ERROR', 'WARNING', 'BUG')",
-        "allowNull": false
-    },
-    "origin": {
-        "type": "DataTypes.STRING",
-        "allowNull": false
-    },
-    "statusCode": {
-        "type": "DataTypes.INTEGER"
-    } 
-    }
+    "logs": {
+      "properties": {
+        "descripition": {
+          "type": "DataTypes.STRING",
+          "allowNull": false
+        },
+        "type": {
+          "type": "DataTypes.ENUM('ERROR', 'WARNING', 'BUG')",
+          "allowNull": false
+        },
+        "origin": {
+          "type": "DataTypes.STRING",
+          "allowNull": false
+        },
+        "statusCode": {
+          "type": "DataTypes.INTEGER"
+        }
+      }
     },
     "auth": {
       "properties": {
@@ -318,8 +291,3 @@
     }
   }
 }
-}
-
-
-
-
