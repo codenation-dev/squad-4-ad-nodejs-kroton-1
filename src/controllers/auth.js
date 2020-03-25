@@ -6,14 +6,15 @@ const Auth = {}
 
 Auth.getToken = (req, res, next) => {
   const { email, password } = req.body
-  const userEmail = model.findOne( { where: { email: email } } )
- 
-  if (( userEmail === null) || ( password !== crypt.descriptografar(userEmail.password))) {
-    return res.status(401).send({ error: 'Invalid user or password.' })
-  }
+  const response = model.findOne({ where: { email: email } })
+  response.then(userEmail => {
+    if ((userEmail === null) || (password !== crypt.descriptografar(userEmail.password))) {
+      return res.status(401).send({ error: 'Invalid user or password.' })
+    }
+  })
 
-  const token = jwt.sing({ email }, process.env.ACCESS_TOKEN, { expiresIn: '1h' })
+  const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: '1h' })
   res.status(200).send({ token: token })
 }
-  
+
 module.exports = Auth
