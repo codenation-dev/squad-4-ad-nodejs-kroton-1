@@ -1,16 +1,17 @@
-const model = require('../models')['users']
+const model = require('../models').users
 const crypt = require('../crypto/crty_dcryp')
 
-let Singin = {}
+const Singin = {}
 
 Singin.create = async (req, res, next) => {
- const {nome, username, password, email} = res.body 
- const crtuser = crypt.criptografar(password)
- let body = {
-     nome, username, crtuser, email
- }
-  const result = await model.create(body)
-  res.status(201).json({ Message:"Usuario cadastrado com sucesso" })
+  let { name, username, password, email } = req.body
+  password = crypt.criptografar(password)
+
+  const body = {
+    name, username, password, email
+  }
+  await model.create(body)
+  res.status(201).json({ Message: 'Usuario cadastrado com sucesso' })
 }
 
 module.exports = Singin
