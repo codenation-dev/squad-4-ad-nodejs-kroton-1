@@ -1,6 +1,6 @@
-const model = require('../models')['users']
+const model = require('../models').users
 
-let Users = {}
+const Users = {}
 
 Users.getAll = async (req, res, next) => {
   const data = await model.findAll({})
@@ -22,7 +22,6 @@ Users.getById = async (req, res, next) => {
 
 Users.create = async (req, res, next) => {
   const result = await model.create(req.body)
-
   res.status(201).json({ result })
 }
 

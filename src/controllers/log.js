@@ -1,24 +1,36 @@
 const model = require('../models')['logs']
-
+const { Op } = require('sequelize')
 let Log = {}
 
-Log.save = async (req, res, next) => {
-    const result = await req.body
-
-    return result
-}
-
 Log.getAll = async (req, res, next) => {
-    const data = await model.findAll({})
-  
-    res.status(200).json({
-      total: data.length,
-      data
-    })
+  const { type, statusCode, origin } = req.query
+
+  let query = { where: {} }
+
+  if(type){
+    query.where['type']=type
+  }
+
+  if(statusCode){
+    query.where['statusCode']=statusCode
+  }
+
+  if(origin){
+    query.where['origin']=origin
   }
   
+  const data = await model.findAll(query)
+  res.status(200).json({
+     total: data.length,
+     data
+  })
+  
+  
+}
+  
   Log.getById = async (req, res, next) => {
-    const { LogId } = req.params
+
+    const LogId = req.params.logsId
     const data = await model.findOne({
       where: { id: LogId }
     })
@@ -29,11 +41,11 @@ Log.getAll = async (req, res, next) => {
   Log.create = async (req, res, next) => {
     const result = await model.create(req.body)
   
-    res.status(201).json({ result })
+    res.status(201).json({message: `Logs salvo na base de dados com sucesso: ${result}`})
   }
   
   Log.update = async (req, res, next) => {
-    const { LogId } = req.params
+    const LogId = req.params.logsId
     const result = await model.update(req.body, {
       where: { id: LogId }
     })
@@ -42,7 +54,7 @@ Log.getAll = async (req, res, next) => {
   }
   
   Log.delete = async (req, res, next) => {
-    const { LogId } = req.params
+    const LogId = req.params.logsId
     const result = await model.destroy({
       where: { id: LogId }
     })

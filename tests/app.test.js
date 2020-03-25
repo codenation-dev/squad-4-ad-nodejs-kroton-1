@@ -2,7 +2,7 @@ const request = require('supertest')
 const server = require('../src/app')
 const db = require('../src/models')
 
-const token
+let token
 
 /* beforeAll(async () => {
   await db.sequelize.query('DROP TABLE IF EXISTS users;')
@@ -14,7 +14,11 @@ beforeAll(async () => {
   await request(server)
   .post('/v1/auth/login')
   .send({
+<<<<<<< HEAD
+    user: "raul",
+=======
     username: "raul",
+>>>>>>> 1dc54c0b21df53895bd31a0da0acf91d8cb0759b
     password: "code123"
   })
   .end((err, response) => {
