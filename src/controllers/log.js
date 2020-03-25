@@ -1,33 +1,30 @@
 const model = require('../models')['logs']
-
+const { Op } = require('sequelize')
 let Log = {}
 
 Log.getAll = async (req, res, next) => {
-  const type = req.query.type
-  const statusCode = req.query.statusCode
-  const origin = req.query.origin
+  const { type, statusCode, origin } = req.query
+
+  let query = { where: {} }
 
   if(type){
-    model.findAll({where: {type: type}})
-      .then(types => res.json(types))
+    query.where['type']=type
   }
 
-  else if(statusCode){
-    model.findAll({where: {statusCode: statusCode}})
-      .then(status => res.json(status))
+  if(statusCode){
+    query.where['statusCode']=statusCode
   }
 
-  else if(origin){
-    model.findAll({where: {origin: origin}})
-      .then(origins => res.json(origins))
+  if(origin){
+    query.where['origin']=origin
   }
-  else{
-    const data = await model.findAll({})
-    res.status(200).json({
+  
+  const data = await model.findAll(query)
+  res.status(200).json({
      total: data.length,
      data
-    })
-  }
+  })
+  
   
 }
   
