@@ -3,7 +3,8 @@ const { Op } = require('sequelize')
 let Log = {}
 
 Log.getAll = async (req, res, next) => {
-  const { type, statusCode, origin } = req.query
+  const { type, statusCode, origin, limit, skip } = req.query
+
 
   let query = { where: {} }
 
@@ -19,9 +20,10 @@ Log.getAll = async (req, res, next) => {
     query.where['origin']=origin
   }
   
-  const data = await model.findAll(query)
+  const data = await model.findAndCountAll({query, limit: limit, offset: skip})
   res.status(200).json({
      total: data.length,
+     pageCount: Math.ceil(data.length / limit),
      data
   })
   
