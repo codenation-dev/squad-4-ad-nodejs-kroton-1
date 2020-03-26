@@ -1,5 +1,5 @@
 const { NODE_ENV = 'development' } = process.env
-require('dotenv').config({path: '../../.env'})
+require('dotenv').config()
 
 module.exports = {
   db: {
