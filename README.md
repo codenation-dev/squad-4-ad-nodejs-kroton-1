@@ -16,7 +16,11 @@ A aplicação registra os logs de erro com um banco de dados relacional utilizan
 ## Integrantes
 
 [Cristiano Franco](https://github.com/infofranco2005)
+
 [Pedro Lanetti](https://github.com/pedrolf30)
+
 [Marcio Junior](https://github.com/mbj-junior)
+
 [Raul Rory](https://github.com/RaulRory)
+
 [Patrick Cruz](https://github.com/patrickzequiel)
