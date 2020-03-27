@@ -42,7 +42,7 @@ npm start
 ````
 
 ### A documentação só poderá ser visualizada, após rodar o servidor com npm start
-[Documentação](http://localhost:8080/api-docs/`)
+* [Documentação](http://localhost:8080/api-docs/`)
 
 ## Integrantes
 
