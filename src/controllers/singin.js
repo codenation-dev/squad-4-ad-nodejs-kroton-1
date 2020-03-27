@@ -11,7 +11,7 @@ Singin.create = async (req, res, next) => {
     name, username, password, email
   }
   await model.create(body)
-  res.status(201).json({ Message: 'Usuario cadastrado com sucesso' })
+  res.status(201).json({ Message: 'Registration completed successfully' })
 }
 
 module.exports = Singin
