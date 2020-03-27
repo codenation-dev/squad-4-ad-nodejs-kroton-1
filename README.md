@@ -53,5 +53,5 @@ npm start
 [Patrick Cruz](https://github.com/patrickzequiel)
 
 
-#### Projeto Desenvolvido para Codenation em parceria com Kroton
+#### Projeto Desenvolvido para [Codenation](https://www.codenation.dev/) em parceria com Kroton
 
