@@ -8,22 +8,32 @@ A aplicação registra os logs de erro com um banco de dados relacional utilizan
 
 ## Como Rodar ? 
 
-* Copie o link do repositório do Git e faça a clonagem 
+### Copie o link do repositório do Git e faça a clonagem 
 ```
 git clone https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1
 ```
-* Entre na pasta squad-4-ad-nodejs-kroton-1
-* Instale as dependências 
-`npm install`
-* Rode Docker-Compose 
-`docker-compose up -d`
-* Crie o banco, indo até a pasta /src/bin e digite 
-`node createDB.js`
-* Crie o server, na mesma pasta digite 
-`node server.js`
-* Comece a rodar 
-`npm start`
-* Após o servidor rodando, pode verificar a documentação 
+### Entre na pasta squad-4-ad-nodejs-kroton-1
+### Instale as dependências 
+```
+npm install
+```
+### Rode Docker-Compose 
+```
+docker-compose up -d
+```
+### Crie o banco, indo até a pasta /src/bin e digite 
+```
+node createDB.js
+```
+### Crie o server, na mesma pasta digite 
+```
+node server.js
+```
+### Comece a rodar 
+```
+npm start
+```
+### Após o servidor rodando, pode verificar a documentação 
 [Documentação](http://localhost:8080/api-docs/`)
 
 
