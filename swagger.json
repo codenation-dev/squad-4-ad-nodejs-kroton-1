@@ -31,7 +31,7 @@
         "summary": "Get all users in system",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Users in the system",
             "schema": {
               "$ref": "#/definitions/users"
             }
@@ -57,7 +57,7 @@
           "application/json"
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "New user is created",
             "schema": {
               "$ref": "#/definitions/users"
@@ -121,7 +121,7 @@
                     "users"
                   ],
                   "responses": {
-                    "200": {
+                    "204": {
                       "description": "User with the given ID is deleted",
                       "schema": {
                         "$ref": "#/definitions/users"
