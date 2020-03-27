@@ -1,4 +1,8 @@
-# CENTRAL DE ERROS
+
+<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="800" height="400">
+
+
+ CENTRAL DE ERROS
 A aplicação registra os logs de erro com um banco de dados relacional utilizando NodeJS
 
 ## Requerimentos
@@ -50,4 +54,3 @@ npm start
 
 #### Projeto Desenvolvido para Codenation em parceria com Kroton
 
-<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="800" height="400>
