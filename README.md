@@ -1,5 +1,5 @@
 
-<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="600" height="400">
 
 
  CENTRAL DE ERROS
