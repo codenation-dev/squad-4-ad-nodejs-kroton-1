@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="300" height="200">
 
 
-# CENTRAL DE ERROS
+# Central de Erros
 A aplicação registra os logs de erro com um banco de dados relacional utilizando NodeJS
 
 ## Requerimentos
@@ -10,7 +10,7 @@ A aplicação registra os logs de erro com um banco de dados relacional utilizan
 * Node.js
 * Docker
 
-## Como Rodar ? 
+## Como rodar ? 
 
 #### Copie o link do repositório do Git e faça a clonagem 
 ```
