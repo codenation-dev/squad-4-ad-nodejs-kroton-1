@@ -46,11 +46,11 @@ npm start
 
 ## Integrantes
 
-[Cristiano Franco](https://github.com/infofranco2005)
-[Pedro Lanetti](https://github.com/pedrolf30)
-[Marcio Junior](https://github.com/mbj-junior)
-[Raul Rory](https://github.com/RaulRory)
-[Patrick Cruz](https://github.com/patrickzequiel)
+* [Cristiano Franco](https://github.com/infofranco2005)           
+* [Pedro Lanetti](https://github.com/pedrolf30)           
+* [Marcio Junior](https://github.com/mbj-junior)          
+* [Raul Rory](https://github.com/RaulRory)            
+* [Patrick Cruz](https://github.com/patrickzequiel)
 
 
 #### Projeto Desenvolvido para [Codenation](https://www.codenation.dev/) em parceria com Kroton
