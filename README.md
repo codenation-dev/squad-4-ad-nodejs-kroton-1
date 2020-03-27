@@ -1,5 +1,5 @@
 
-<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="600" height="400">
+<img src="https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png" width="300" height="200">
 
 
 # CENTRAL DE ERROS
@@ -28,19 +28,20 @@ npm install
 ```
 docker-compose up -d
 ```
-#### Crie o banco, indo até a pasta /src/bin e digite 
+#### Crie o banco de dados
 ```
-node createDB.js
+npm start:cre
 ```
-#### Crie o server, na mesma pasta digite 
+#### Sincronize o banco
 ```
-node server.js
+npm start:db
 ```
-#### Comece a rodar 
-```
+### Comece a rodar 
+````
 npm start
-```
-### Após o servidor rodando, pode verificar a documentação 
+````
+
+### A documentação só poderá ser visualizada, após rodar o servidor com npm start
 [Documentação](http://localhost:8080/api-docs/`)
 
 ## Integrantes
