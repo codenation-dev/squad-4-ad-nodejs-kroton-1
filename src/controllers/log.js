@@ -20,7 +20,7 @@ Log.getAll = async (req, res, next) => {
     query.where['origin']=origin
   }
   
-  const data = await model.findAndCountAll({query, limit: limit, offset: skip})
+  const data = await model.findAndCountAll({query, limit: parseInt(limit), offset: parseInt(skip)})
   res.status(200).json({
      total: data.length,
      pageCount: Math.ceil(data.length / limit),
