@@ -9,7 +9,9 @@ A aplicação registra os logs de erro com um banco de dados relacional utilizan
 ## Como Rodar ? 
 
 * Copie o link do repositório do Git e faça a clonagem 
-`git clone https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1`
+```
+git clone https://github.com/codenation-dev/squad-4-ad-nodejs-kroton-1
+```
 * Entre na pasta squad-4-ad-nodejs-kroton-1
 * Instale as dependências 
 `npm install`
