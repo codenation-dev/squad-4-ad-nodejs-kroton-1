@@ -50,4 +50,4 @@ npm start
 
 #### Projeto Desenvolvido para Codenation em parceria com Kroton
 
-![Squad4](https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png)
+![Squad4](https://user-images.githubusercontent.com/54329272/77717549-8a6c2000-6fbf-11ea-81ef-c51fa7ebe44d.png =250x250)
