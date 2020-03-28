@@ -1,6 +1,6 @@
-const { NODE_ENV = 'development' } = process.env
+const { NODE_ENV = 'development'} = process.env
 
-require('dotenv').config({ path: '../../.env' })
+require('dotenv').config()
 
 module.exports = {
   db: {
@@ -14,5 +14,5 @@ module.exports = {
     segredo: process.env.SECRET_CRYPT_KEY,
     tipo: process.env.CRYPT_TYPE
   },
-  env: NODE_ENV,
+  env: NODE_ENV
 }

@@ -3,7 +3,7 @@ const model = require('../models').users
 const Users = {}
 
 Users.getAll = async (req, res, next) => {
-  const data = await model.findAll({})
+  const data = await model.findAll({ attributes: { exclude: ['password', 'isAdmin'] } })
 
   res.status(200).json({
     total: data.length,
@@ -14,7 +14,7 @@ Users.getAll = async (req, res, next) => {
 Users.getById = async (req, res, next) => {
   const { usersId } = req.params
   const data = await model.findOne({
-    where: { id: usersId }
+    where: { id: usersId }, attributes: { exclude: ['password', 'isAdmin'] }
   })
 
   res.status(200).json(data)

@@ -8,10 +8,10 @@ router.get('/', verifyToken, controller.getAll)
 
 router.get('/:usersId', verifyToken, controller.getById)
 
-router.post('/', verifyToken, controller.create)
+router.post('/', verifyToken, authorizationUser, controller.create)
 
-router.put('/:usersId', authorizationUser, controller.update)
+router.patch('/:usersId', verifyToken, authorizationUser, controller.update)
 
-router.delete('/:usersId', authorizationUser, controller.delete)
+router.delete('/:usersId', verifyToken, authorizationUser, controller.delete)
 
 module.exports = router

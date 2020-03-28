@@ -36,7 +36,7 @@ Log.getById = async (req, res, next) => {
 }
 
 Log.create = async (req, res, next) => {
-  const result = await model.create(req.body)
+  await model.create(req.body)
 
   res.status(201).json({ message: 'Logs salvo na base de dados com sucesso' })
 }
