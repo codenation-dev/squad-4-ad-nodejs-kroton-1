@@ -8,10 +8,10 @@ router.get('/', verifyToken, controller.getAll)
 
 router.get('/:logsId', verifyToken, controller.getById)
 
-router.post('/', controller.create) // ENPOINT QUE ENVIA OS ERROS PARA O BANCO, PRECISA COLOCAR UMA LOGICA PARA CHAMAR ELE APENAS EM ERRO
+router.post('/', controller.create)
 
-router.patch('/:logsId', authorizationUser, controller.update)
+router.patch('/:logsId', verifyToken, authorizationUser, controller.update)
 
-router.delete('/:logsId', authorizationUser, controller.delete)
+router.delete('/:logsId', verifyToken, authorizationUser, controller.delete)
 
 module.exports = router
