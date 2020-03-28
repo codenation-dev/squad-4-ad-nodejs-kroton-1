@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ./src/bin/server.js",
     "start:dev": "nodemon ./src/bin/server.js",
-    "start:db": "node ./src/bin/syncDB.js",
-    "test": "jest ./test/app.test.js",
+    "start:db": "node ./src/bin/createDB.js && node ./src/bin/syncDB.js",
+    "test": "jest ./tests/user.test.js && jest ./tests/log.test.js",
     "linter": "standard --fix"
   },
   "repository": {
