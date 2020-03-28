@@ -10,7 +10,7 @@ beforeAll(async () => {
 
   await db.sequelize.sync()
 })
-"rmv9VHnB10yNxrJDbV+o/A==:q/1ERBFtDhAQ4XAcUNdiuA=="
+
 afterAll(async () => {
   await db.sequelize.query('DROP TABLE IF EXISTS users;')
   await db.sequelize.query('DROP TABLE IF EXISTS logs;')
@@ -19,7 +19,7 @@ afterAll(async () => {
 
 describe('The API on /v1/users Endpoint at GET method should...', () => {
   beforeAll(async () => {
-    await request(server.app).post('/v1/singin').send({
+    await request(server.app).post('/v1/sinup').send({
       name: 'Raul Rory',
       username: 'RRory',
       email: 'raul@io.com.br',
@@ -51,11 +51,11 @@ describe('The API on /v1/users Endpoint at GET method should...', () => {
       .get('/v1/users')
       .set('x-auth-token', `${token}`)
 
-      expect(res.statusCode).toEqual(200)
-      expect(Object.keys(res.body)).toMatchObject([
-        'total',
-        'data'
-      ])
+    expect(res.statusCode).toEqual(200)
+    expect(Object.keys(res.body)).toMatchObject([
+      'total',
+      'data'
+    ])
   })
 })
 
@@ -74,30 +74,29 @@ describe('The API on /v1/users/:usersId Endpoint at GET method should...', () =>
       .get('/v1/users')
       .set('x-auth-token', `${token}`)
 
-
     expect(res.statusCode).toEqual(200)
     expect(Object.keys(res.body)).toMatchObject([
-        'total',
-        'data'
+      'total',
+      'data'
     ])
   })
-    test('return a database user', async () => {
-      expect.assertions(2)
-  
-      const validToken = await request(server.app).post('/v1/auth/login').send({
-        email: 'raul@io.com.br',
-        password: 'Code123'
-      })
-  
-      token = validToken.body.token
-  
-      const res = await request(server.app)
-        .get('/v1/users')
-        .set('x-auth-token', `${token}`)
-  
-        expect(res.body.total).toEqual(1)
-        expect(typeof res.body.data).toBe('object')
+  test('return a database user', async () => {
+    expect.assertions(2)
+
+    const validToken = await request(server.app).post('/v1/auth/login').send({
+      email: 'raul@io.com.br',
+      password: 'Code123'
     })
+
+    token = validToken.body.token
+
+    const res = await request(server.app)
+      .get('/v1/users')
+      .set('x-auth-token', `${token}`)
+
+    expect(res.body.total).toEqual(1)
+    expect(typeof res.body.data).toBe('object')
+  })
 })
 
 describe('The API on /v1/users Endpoint at POST method should...', () => {
@@ -115,40 +114,38 @@ describe('The API on /v1/users Endpoint at POST method should...', () => {
       .post('/v1/users')
       .set('x-auth-token', `${token}`)
       .send({
-        "name": "Marcio Bot",
-        "username": "Mb",
-        "password": "Codenation28",
-        "email": "marcio28@io.com.br"
+        name: 'Marcio Bot',
+        username: 'Mb',
+        password: 'Codenation28',
+        email: 'marcio28@io.com.br'
       })
 
-
     expect(res.statusCode).toEqual(201)
-    expect(Object.keys(res.body)).toStrictEqual({message:'User successfully registered'})
+    expect(Object.keys(res.body)).toStrictEqual({ message: 'User successfully registered' })
   })
 
   test('return 401 as status code and a massage for user', async () => {
-  expect.assertions(2)
+    expect.assertions(2)
 
-  const validToken = await request(server.app).post('/v1/auth/login').send({
-    email: 'raul@io.com.br',
-    password: 'Code123'
-  })
-
-  token = validToken.body.token
-
-  const res = await request(server.app)
-    .post('/v1/users')
-    .set('x-auth-token', `${token}`)
-    .send({
-      "name": "Marcio Bot",
-      "username": "Mb",
-      "password": "Codenation28",
-      "email": "marcio28@io.com.br"
+    const validToken = await request(server.app).post('/v1/auth/login').send({
+      email: 'raul@io.com.br',
+      password: 'Code123'
     })
 
+    token = validToken.body.token
 
-  expect(res.statusCode).toEqual(401)
-  expect(res.body).toStrictEqual({message: 'Not authorized to access this resource'})
+    const res = await request(server.app)
+      .post('/v1/users')
+      .set('x-auth-token', `${token}`)
+      .send({
+        name: 'Marcio Bot',
+        username: 'Mb',
+        password: 'Codenation28',
+        email: 'marcio28@io.com.br'
+      })
+
+    expect(res.statusCode).toEqual(401)
+    expect(res.body).toStrictEqual({ message: 'Not authorized to access this resource' })
   })
 })
 
@@ -167,40 +164,38 @@ describe('The API on /v1/users/:usersId Endpoint at PACTH method should...', () 
       .patch('/v1/users/1')
       .set('x-auth-token', `${token}`)
       .send({
-        "name": "Patrick",
-        "username": "patrick pat",
-        "password": "Codenation",
-        "email": "patrick@io.com.br"
+        name: 'Patrick',
+        username: 'patrick pat',
+        password: 'Codenation',
+        email: 'patrick@io.com.br'
       })
 
-
     expect(res.statusCode).toEqual(200)
-    expect(res.body).toStrictEqual({message:'The data sent has been updated successfully'})
+    expect(res.body).toStrictEqual({ message: 'The data sent has been updated successfully' })
   })
 
   test('return 401 as status code and a massage for user', async () => {
-  expect.assertions(2)
+    expect.assertions(2)
 
-  const validToken = await request(server.app).post('/v1/auth/login').send({
-    email: 'raul@io.com.br',
-    password: 'Code123'
-  })
-
-  token = validToken.body.token
-
-  const res = await request(server.app)
-    .patch('/v1/users/1')
-    .set('x-auth-token', `${token}`)
-    .send({
-      "name": "Marcio Bot",
-      "username": "Mb",
-      "password": "Codenation28",
-      "email": "marcio28@io.com.br"
+    const validToken = await request(server.app).post('/v1/auth/login').send({
+      email: 'raul@io.com.br',
+      password: 'Code123'
     })
 
+    token = validToken.body.token
 
-  expect(res.statusCode).toEqual(401)
-  expect(res.body).toStrictEqual({message: 'Not authorized to access this resource'})
+    const res = await request(server.app)
+      .patch('/v1/users/1')
+      .set('x-auth-token', `${token}`)
+      .send({
+        name: 'Marcio Bot',
+        username: 'Mb',
+        password: 'Codenation28',
+        email: 'marcio28@io.com.br'
+      })
+
+    expect(res.statusCode).toEqual(401)
+    expect(res.body).toStrictEqual({ message: 'Not authorized to access this resource' })
   })
 })
 
@@ -220,24 +215,24 @@ describe('The API on /v1/users/:usersId Endpoint at DELETE method should...', ()
       .set('x-auth-token', `${token}`)
 
     expect(res.statusCode).toEqual(204)
-    expect(res.body).toStrictEqual({message:'Data deleted from the database'})
+    expect(res.body).toStrictEqual({ message: 'Data deleted from the database' })
   })
 
   test('return 401 as status code and a massage for user', async () => {
-  expect.assertions(2)
+    expect.assertions(2)
 
-  const validToken = await request(server.app).post('/v1/auth/login').send({
-    email: 'raul@io.com.br',
-    password: 'Code123'
-  })
+    const validToken = await request(server.app).post('/v1/auth/login').send({
+      email: 'raul@io.com.br',
+      password: 'Code123'
+    })
 
-  token = validToken.body.token
+    token = validToken.body.token
 
-  const res = await request(server.app)
-    .patch('/v1/users/1')
-    .set('x-auth-token', `${token}`)
+    const res = await request(server.app)
+      .patch('/v1/users/1')
+      .set('x-auth-token', `${token}`)
 
-  expect(res.statusCode).toEqual(401)
-  expect(res.body).toStrictEqual({message: 'Not authorized to access this resource'})
+    expect(res.statusCode).toEqual(401)
+    expect(res.body).toStrictEqual({ message: 'Not authorized to access this resource' })
   })
 })

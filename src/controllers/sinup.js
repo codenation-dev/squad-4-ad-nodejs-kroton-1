@@ -1,9 +1,9 @@
 const model = require('../models').users
 const crypt = require('../crypto/crty_dcryp')
 
-const Singin = {}
+const Sinup = {}
 
-Singin.create = async (req, res, next) => {
+Sinup.create = async (req, res, next) => {
   let { name, username, password, email } = req.body
   password = crypt.criptografar(password)
 
@@ -18,4 +18,4 @@ Singin.create = async (req, res, next) => {
   res.status(201).json({ Message: 'Registration completed successfully' })
 }
 
-module.exports = Singin
+module.exports = Sinup

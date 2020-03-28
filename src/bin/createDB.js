@@ -11,9 +11,9 @@ con.connect(function (err) {
   if (err) throw err
   console.log('Connected!')
   con.query(`CREATE DATABASE IF NOT EXISTS ${config.db.database}`)
-  con.query(`CREATE DATABASE IF NOT EXISTS node_logs_test`, function (err, result) {
+  con.query('CREATE DATABASE IF NOT EXISTS node_logs_test', function (err, result) {
     if (err) throw err
     console.log('Database created!')
-    .then(() => process.exit(0))
+    process.exit(0)
   })
 })

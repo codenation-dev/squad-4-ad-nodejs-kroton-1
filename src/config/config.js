@@ -1,4 +1,4 @@
-const { NODE_ENV = 'development'} = process.env
+const { NODE_ENV = 'development' } = process.env
 
 require('dotenv').config()
 
