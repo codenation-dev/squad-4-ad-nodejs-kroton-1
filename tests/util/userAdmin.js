@@ -9,7 +9,7 @@ const User = {
     email: 'rauladmin@io.com.br',
     isAdmin: true,
   }
-
+  
   Admin.createUser = async () => {
     await db.create(User)
 }

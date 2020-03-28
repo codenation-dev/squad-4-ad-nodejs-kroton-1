@@ -28,9 +28,9 @@ Log.getAll = async (req, res, next) => {
 
 Log.getById = async (req, res, next) => {
   const LogId = req.params.logsId
-  await model.findOne({ where: { id: LogId }})
+  const data = await model.findOne({ where: { id: LogId }})
 
-  res.status(200).json(data)
+  res.status(200).json({data})
 }
 
 Log.create = async (req, res, next) => {
