@@ -1,14 +1,16 @@
 const request = require('supertest')
 const server = require('../src/app')
 const db = require('../src/models')
+const query = require('./util/userAdmin')
 
 let token = {} // variable used in all tests
 
 beforeAll(async () => {
+
   await db.sequelize.query('DROP TABLE IF EXISTS users;')
   await db.sequelize.query('DROP TABLE IF EXISTS logs;')
-
   await db.sequelize.sync()
+  await query.createUser()
 })
 
 afterAll(async () => {
@@ -16,6 +18,7 @@ afterAll(async () => {
   await db.sequelize.query('DROP TABLE IF EXISTS logs;')
   await db.sequelize.close()
 })
+
 
 describe('The API on /v1/users Endpoint at GET method should...', () => {
   beforeAll(async () => {
@@ -94,7 +97,7 @@ describe('The API on /v1/users/:usersId Endpoint at GET method should...', () =>
       .get('/v1/users')
       .set('x-auth-token', `${token}`)
 
-    expect(res.body.total).toEqual(1)
+    expect(res.body.total).toEqual(2)
     expect(typeof res.body.data).toBe('object')
   })
 })
@@ -105,7 +108,7 @@ describe('The API on /v1/users Endpoint at POST method should...', () => {
 
     const validToken = await request(server.app).post('/v1/auth/login').send({
       email: 'rauladmin@io.com.br',
-      password: 'm1p4ss'
+      password: 'Code123'
     })
 
     token = validToken.body.token
@@ -117,11 +120,12 @@ describe('The API on /v1/users Endpoint at POST method should...', () => {
         name: 'Marcio Bot',
         username: 'Mb',
         password: 'Codenation28',
-        email: 'marcio28@io.com.br'
+        email: 'marcio28@io.com.br',
+        isAdmin: 0
       })
 
     expect(res.statusCode).toEqual(201)
-    expect(Object.keys(res.body)).toStrictEqual({ message: 'User successfully registered' })
+    expect(res.body).toStrictEqual({ message: 'User successfully registered' })
   })
 
   test('return 401 as status code and a massage for user', async () => {
@@ -150,12 +154,12 @@ describe('The API on /v1/users Endpoint at POST method should...', () => {
 })
 
 describe('The API on /v1/users/:usersId Endpoint at PACTH method should...', () => {
-  test('return 201 as status code and a massage for user', async () => {
+  test('return 200 as status code and a massage for user', async () => {
     expect.assertions(2)
 
     const validToken = await request(server.app).post('/v1/auth/login').send({
       email: 'rauladmin@io.com.br',
-      password: 'm1p4ss'
+      password: 'Code123'
     })
 
     token = validToken.body.token
@@ -167,7 +171,7 @@ describe('The API on /v1/users/:usersId Endpoint at PACTH method should...', () 
         name: 'Patrick',
         username: 'patrick pat',
         password: 'Codenation',
-        email: 'patrick@io.com.br'
+        email: 'patrick@io.com.br',
       })
 
     expect(res.statusCode).toEqual(200)
@@ -204,15 +208,15 @@ describe('The API on /v1/users/:usersId Endpoint at DELETE method should...', ()
     expect.assertions(2)
 
     const validToken = await request(server.app).post('/v1/auth/login').send({
-      email: 'rauladmin@io.com.br',
+      email: 'patrick@io.com.br',
       password: 'Code123'
     })
 
     token = validToken.body.token
 
     const res = await request(server.app)
-      .patch('/v1/users/1')
-      .set('x-auth-token', `${token}`)
+    .delete('/v1/users/1')
+    .set('x-auth-token', `${token}`)
 
     expect(res.statusCode).toEqual(204)
     expect(res.body).toStrictEqual({ message: 'Data deleted from the database' })
@@ -229,7 +233,7 @@ describe('The API on /v1/users/:usersId Endpoint at DELETE method should...', ()
     token = validToken.body.token
 
     const res = await request(server.app)
-      .patch('/v1/users/1')
+      .delete('/v1/users/1')
       .set('x-auth-token', `${token}`)
 
     expect(res.statusCode).toEqual(401)

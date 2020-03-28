@@ -28,9 +28,7 @@ Log.getAll = async (req, res, next) => {
 
 Log.getById = async (req, res, next) => {
   const LogId = req.params.logsId
-  const data = await model.findOne({
-    where: { id: LogId }
-  })
+  await model.findOne({ where: { id: LogId }})
 
   res.status(200).json(data)
 }
@@ -38,25 +36,21 @@ Log.getById = async (req, res, next) => {
 Log.create = async (req, res, next) => {
   await model.create(req.body)
 
-  res.status(201).json({ message: 'Logs salvo na base de dados com sucesso' })
+  res.status(201).json({ message: 'Logs saved to database successfully' })
 }
 
 Log.update = async (req, res, next) => {
   const LogId = req.params.logsId
-  const result = await model.update(req.body, {
-    where: { id: LogId }
-  })
+  await model.update(req.body, { where: { id: LogId }})
 
-  res.status(200).json({ result })
+  res.status(200).json({message: 'The data sent has been updated successfully' })
 }
 
 Log.delete = async (req, res, next) => {
   const LogId = req.params.logsId
-  const result = await model.destroy({
-    where: { id: LogId }
-  })
+  await model.destroy({ where: { id: LogId }})
 
-  res.status(204).json({ result })
+  res.status(204).json({ message: 'Data deleted from the database' })
 }
 
 module.exports = Log
